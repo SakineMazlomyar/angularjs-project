@@ -41,7 +41,7 @@ app.controller('ProductCtrl', ($scope, prodcutFactory) => {
         products.push({category:categories[i].name, categoryId:categories[i].id, children:categories[i].children.slice(0,$scope.amount) })
         
     }
-    console.log(products )
+  
     
     let finalProducts =  []
     

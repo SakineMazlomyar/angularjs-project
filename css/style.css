@@ -1,0 +1,19 @@
+.container-info{
+    background-color: #529cdc;
+
+    height:15em; 
+    margin: 0.5em; 
+    list-style-type: none; 
+    font-size:1.2vw;
+    border-radius: 25px
+
+
+}
+
+.load-button {
+    margin-top: 2em;
+}
+.main-container {
+    margin:1; padding:1; width:100%;
+    font-size: 1.4vw;
+}
