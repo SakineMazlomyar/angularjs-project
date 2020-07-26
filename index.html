@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+	<title>Gung AB - work assignment FE</title>
+	<meta charset="UTF-8">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js" integrity="sha256-6Sr0HqNgUf/p88g6vsl87CrAnNqiOWhjlY6LS8jeWHA=" crossorigin="anonymous"></script>
+	<script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
+</head>
+<body >
+ 
+	<div class="container-fluid" style="margin:1; padding:1; width:100%" ng-controller="ProductCtrl">
+		
+		
+		<nav style="width:100%" class="navbar  navbar-dark bg-primary mb-3">
+			<a class="navbar-brand" href="#">
+				<img src="./imgs/gung_logo.png" width="100" height="30" alt="">
+			</a>
+			
+		</nav>
+
+		<div class="row">
+			<input ng-click="collapsed=!collapsed" class="col-xs-12 text-center" type="checkbox" ng-model="checked" ng-init="checked=false"/> <span class="col-xs-12 text-center" style="font-size:2em;">
+				Toggla För Att Visa Kategorier</span></input>
+		</div>
+		<div   ng-show="collapsed" class="row row col-md-8 mb-2 col-sm-4col-xs-6">
+		
+			<label for="category">Filter med kategori</label>
+			<select ng-click="getChoosenProductsCategory(search.category)" ng-model="search.category">
+				<option   ng-repeat="category in categories">{{category.name}}</option>
+			
+			</select>
+		</div>
+
+		<button class="bg-primary" ng-click="loadMoreProducts()">Ladda Mer Produkter: Alla Produkter: {{products.length}}</button>
+		<div  ng-if="collapsed" style="margin-top: 2em;">
+
+			<label for="Order">Ordra Up med Namn, Id eller Pris utanför dublikate</label>
+			<select ng-model="order">
+				<option value="name"> Namn</option>
+				<option value="id">Id </option>
+				<option value="extra['AGA'].PRI">Pris</option>
+			</select>
+			<div>
+				<input type="range" ng-change="filterOnQuantity(quantity)" ng-model="quantity" min="1"  max="8" />
+				<label for="quantity">Filtera Lager >0: {{quantity}}</label>
+			</div>
+			
+			<div>
+				<input  ng-change="filterOnVolym(volym)" type="range" ng-model="volym"  min="1" max="8" />
+				<label for="volume"> Filtera Volym >=1: {{ volym}}</label>
+			</div>
+			
+			<ul  style=" width:25%; margin: 0.5em; list-style-type: none;" 
+			class="container  bg-primary 
+			col-md-2 col-sm-4col-xs-6 align-middle" 
+			data-ng-repeat="product in products | filter:search:strict | filter:filter2  | filter:filter1 | orderBy:order  track by $index">
+				<li><h5>Namn : {{ product.name}}</h5></li>
+				<li><h5>Id: {{ product.id }}</h5></li>
+				<li><h5>Pris: {{ product.extra['AGA'].PRI }} kr</h5></li>
+				<li><h5> I Lagar: {{ product.extra['AGA'].LGA }}</h5></li>
+				<li><h5>Volym: {{ product.extra['AGA'].VOL}}</h5></li>
+				<li><h5>Kategori Namn: {{ product.category}}</h5></li>
+				
+			</ul>
+			
+		</div>
+		
+	</div>
+
+	
+
+
+<!-- <script type="text/javascript" src="helps/help-funcs.js"></script> -->
+	<script type="text/javascript" src="src/app.js"></script>
+	<script type="text/javascript" src="src/controllers/productController.js"></script>
+	<script type="text/javascript" src="src/factories/factory.js"></script>
+
+</body>
+</html>	
