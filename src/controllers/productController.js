@@ -25,7 +25,7 @@ app.controller('ProductCtrl', ($scope, prodcutFactory) => {
     })
     
   
-    $scope.amount = 10
+    $scope.amount = 5
     $scope.products=[]
     
    let initProducts = ()=> {
@@ -41,7 +41,7 @@ app.controller('ProductCtrl', ($scope, prodcutFactory) => {
         products.push({category:categories[i].name, categoryId:categories[i].id, children:categories[i].children.slice(0,$scope.amount) })
         
     }
-
+    console.log(products )
     
     let finalProducts =  []
     
@@ -62,13 +62,14 @@ app.controller('ProductCtrl', ($scope, prodcutFactory) => {
     }
     $scope.products = finalProducts
     
+    
     })
    }
     initProducts()
     
  
    
-  
+   /* Onchange for quantity */
     $scope.filterOnQuantity = (quantity)=>{
         $scope.filter1 =(field1, field2)=>{
             if(field1.extra['AGA']['LGA']<=quantity && field1.extra['AGA']['LGA']>0){
@@ -79,11 +80,11 @@ app.controller('ProductCtrl', ($scope, prodcutFactory) => {
         }
        
     }
-
+    /* Onchange for volym */
     $scope.filterOnVolym = (volym)=>{
+        
         $scope.filter2 =(field1, field2)=>{
-            console.log(field1)
-            if(field1.extra['AGA']['VOL']<=volym && field1.extra['AGA']['VOL']>0){
+            if(field1.extra['AGA']['VOL']<=Number(volym) && field1.extra['AGA']['VOL']>0){
 
                 return field1
             }
@@ -93,11 +94,9 @@ app.controller('ProductCtrl', ($scope, prodcutFactory) => {
     }
 
    
-    $scope.loadMoreProducts = () =>{ 
-        $scope.amount+=10
-        if($scope.amoun>100000){
-            $scope.amount=100000
-        }
+    $scope.loadProducts = () =>{ 
+        $scope.amount+=2
+        
         initProducts()
     }
 
