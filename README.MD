@@ -16,6 +16,7 @@ c. Om produkten ingår i en viss kategori, d.v.s. om den är undernod till
 given kategori.
 Vi förutsätter att uppgiften löses med Angular 1.x, samt Bootstrap för lite enklare css
 styling.
-Dyker det upp några frågor så är det bara att maila direkt på: info@gung.io
+
+
 
 
